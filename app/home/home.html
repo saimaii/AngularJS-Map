@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="home.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>Google Map</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg map-bg-orange-1 mb-12">
+      <img class="navBand" src="https://image.flaticon.com/icons/svg/717/717541.svg">
+      <h1 class="text-white-1">Map       &nbsp;&nbsp; </h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+           
+          <form class="form-inline mt-2 mt-md-0" ng-submit="LocationSearch(locationSearch)" ng-model="locationSearch">
+            <input class="form-control mr-sm-2 inputText" type="text" placeholder="Search" aria-label="Search" ng-model="searchText">
+            <input class="form-control mr-sm-2 inputText" type="number" placeholder="Radius" aria-label="Radius" ng-model="locationSearch.radius">
+            <button type="submit" class="btn btn-search">
+              <span class="fa fa-search"></span>
+            </button>
+          </form>       
+      </nav>      
+      <div ng-controller="HomeCtrl">
+        <div class="row ">
+            <div class="col container scroll">
+                <div class="card mb-6" style="max-width: 100%;" ng-repeat="data in dataList | filter:searchText">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <div class="col-md-4" >
+                          <br>
+                          <img class="imgRound" 
+                          ng-src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CmRaAAAARudLpp-VezNpOjj30xb8hAuBqdUm18W30_QFGdQbp48fEv0hgbF_AINpU9ynPzRKYPRlz9JS36Vg39IKGDw5AHVgGUdIrv1A9DbBlL2-nBnYIqQOnfxogHCGbHkn25NXEhAicSRQISmaJSS1suRujuVhGhTFxEEVqMAdQgN0fcnxyj_izsQL0w&key=AIzaSyCZ1BCe4Q7YL1nCa_ovtet4Bjn52tT20T8"
+                          style="width: 200px;">
+                        </div>                       
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-12">
+                          <div class="card-body">
+                            <h5 class="card-title text-orange-1">{{data.name}}</h5>
+                            <p class="card-text light">{{data.vicinity}}</p>
+                            <div class="row">
+                              <div class="col">
+                                <p class="card-text">
+                                  &nbsp;<i class="fa fa-map-marker text-blue-1" aria-hidden="true"></i>
+                                  <small class="text-muted"> {{data.types[0]|removeUnderscores}}</small>
+                                  <small class="text-muted" ng-if="">{{data.types[1]|removeUnderscores}}</small>
+                                  <small class="text-muted">{{data.types[2]|removeUnderscores}}</small>
+                                </p>
+                              </div>
+                              <div class="col rating" ng-show="data.rating > 4.5">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 4.5 && data.rating >= 4.0 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star-half-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 4.0 && data.rating >= 3.5 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 3.5 && data.rating >= 3.0 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-half text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 3.0 && data.rating > 2.5 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 2.5 && data.rating > 2.0 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star-half text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 2.0 && data.rating >= 1.5 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                             
+                              <div class="col rating" ng-show="data.rating <= 1.5 && data.rating > 1.0 ">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star-half text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="data.rating <= 1.0">
+                                <i class="fa fa-star text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                              <div class="col rating" ng-show="!data.rating">
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i> 
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>&nbsp;</i>                                
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true">&nbsp;</i>
+                                <i class="fa fa-star-o text-blue-1" aria-hidden="true"></i>
+                              </div>
+                            </div>
+                          
+                           
+                            
+                          </div>
+                        </div>
+                      </div>                      
+                    </div>
+                  </div>
+                  
+            </div>
+            <div class="col">                
+                    <div class="map_canvas" id="map"></div>               
+            </div>
+          </div>
+        </div>
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+</body>
+
+</html>

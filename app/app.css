@@ -1,0 +1,123 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #b3e5fc;
+  background-clip: border-box;
+  border-bottom: 1px solid rgba(0,0,0,.125) !important;
+  border-top:0 !important;
+  border-left:0 !important;
+  border-right:0 !important;
+  border-radius: 0 !important;
+}
+div.scroll { 
+ 
+  margin:5px; 
+  padding:5px;  
+  width: auto; 
+  height: 100vh; 
+  overflow: auto; 
+} 
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.scroll {
+    -ms-overflow-style: none;
+}
+.map_canvas {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.text-orange-1{
+  color:#ff9800 !important;
+}
+.text-blue-1{
+  color:#29b6f6 !important;
+}
+.text-white-1{
+  color:#fff !important;
+}
+.map-bg-orange-1{
+  background-color: #29b6f6 !important;
+}
+.btn-outline-success:hover{
+  background-color: #ff9800 !important;
+  border-color:#ff9800 !important;
+}
+.btn-outline-success{
+  background-color:#ff9800!important;
+  border-color:#ff9800 !important;
+  color:#fff !important;
+}
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #ff9800!important;
+}
+.btn-outline-success.focus, .btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem #ffb74d!important;
+}
+.light{
+   color:#616161;
+}
+.imgRound {
+  border-radius: 5% !important;
+}
+.rating{
+  text-align: right !important;
+}
+.inputText{
+  border-radius: 50px !important;
+}
+.btn-search{
+  color: white !important;
+  font-size: 20px !important;
+}
+.navBand{
+  width: 50px !important;
+}
+

@@ -9,8 +9,6 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }])
  
-// Home controller
-
     app.controller('HomeCtrl', function($scope,$http) { 
         $scope.locationSearch = [];
         $scope.dataList =[];
@@ -22,15 +20,12 @@ app.config(['$routeProvider', function($routeProvider) {
         }
         
             $http.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=18.7717874,98.9742796&radius=500&key=AIzaSyCZ1BCe4Q7YL1nCa_ovtet4Bjn52tT20T8")
-            //$http.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=18.7717874,98.9742796&radius=55&key=AIzaSyCZ1BCe4Q7YL1nCa_ovtet4Bjn52tT20T8")
             .then(function(response){
             $scope.dataList = response.data.results;           
            console.log("datalist",$scope.dataList);  
                  
         });	
        
-                  
-        console.log('Google Maps API version: ' + google.maps.version);
         var locations = [
             {
                 title: 'Chiang Mai',
@@ -121,63 +116,13 @@ app.config(['$routeProvider', function($routeProvider) {
                 lng: 98.9607106
             }
         ]
-    var searchImg=[
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    {
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },{
-        image:'https://lh3.googleusercontent.com/p/AF1QipMjda-vy-dJOZQTHw1MlDIGHDvA0YUlLS3vm5sT=s1600-w400'
-    },
-    ]
+    
        var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
             center: new google.maps.LatLng(18.772465,98.97363299999999),
             
         });
         angular.forEach(locations, function(location, index) {
-            console.log('location ::==' + location.title);
             var marker = new google.maps.Marker({position: location, map: map, title: location.title});
             var infowindow = new google.maps.InfoWindow({content: location.title});
             marker.addListener('click',  function(event) {
@@ -186,10 +131,11 @@ app.config(['$routeProvider', function($routeProvider) {
             });
         });
 
-        map.addListener('click', function(event) {
-            console.log('latitude ::==' + event.latLng.lat());
-            console.log('longtitude ::==' + event.latLng.lng());
-            alert('Latitude ::=='+event.latLng.lat()+' \nLongitude ::=='+event.latLng.lng());
+        map.addListener('click',function(event) {
+            $scope.lat = event.latLng.lat();
+            $scope.lng = event.latLng.lng();
+            console.log('latitude',$scope.lat);
+            console.log('longtitude',$scope.lng);
         });
     });
     app.filter('removeUnderscores', [function() {
